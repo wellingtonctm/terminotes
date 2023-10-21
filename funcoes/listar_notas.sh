@@ -1,10 +1,4 @@
-#!/bin/bash
-
-. config
-
-listar_notas() {
-	clear
-
+function listar_notas() {
 	notas=$(
 		sqlite3 "$ARQUIVO_BD" -separator '|' <<- EOF
 			SELECT n.titulo, GROUP_CONCAT(t.nome, ', ') AS tags
@@ -25,5 +19,3 @@ listar_notas() {
 		done <<< "$notas"
 	fi
 }
-
-listar_notas
